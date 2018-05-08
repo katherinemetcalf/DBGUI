@@ -1,0 +1,23 @@
+.heading {
+  background-color: #1C1E21;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heading .solvusLogo {
+  margin: 5px;
+}
+
+.form {
+width: 20rem;
+margin: auto;
+}
+
+.form input {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  margin-bottom: 8px;
+}
