@@ -1,6 +1,5 @@
 <div align='center'>
   <h1 align='center'>DBGUI</h1>
-  <p align='center'><img width='300' src='http://www.solvusglobal.com/wp-content/uploads/2018/02/Solvus-Global.png' /></p>
   <p align='center'>An intuitive desktop application to create and manage local databases</p>
 </div>
 
