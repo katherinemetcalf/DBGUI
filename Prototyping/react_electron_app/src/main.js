@@ -1,52 +1,41 @@
-const {app, BrowserWindow} = require('electron')
-  const path = require('path')
-  const url = require('url')
+const {app, BrowserWindow, ipcMain} = require('electron');
+const path = require('path');
+const url = require('url');
+
 
   // Keep a global reference of the window object, if you don't, the window will
   // be closed automatically when the JavaScript object is garbage collected.
-  let win;
+  let mainWindow;
 
-  // PostgreSQL
-  const { Pool, Client } = require('pg');
-  let dbuser, dbhost, dbname, dbpass, dbport;
-
-  // const pool = new Pool({
-  //   user: dbuser,
-  //   host: dbhost,
-  //   database: dbname,
-  //   password: dbpass,
-  //   port: dbport,
-  // })
-
-  function createWindow () {
+  function createMainWindow () {
     // Create the browser window.
-    win = new BrowserWindow({width: 800, height: 600})
+    mainWindow = new BrowserWindow({width: 800, height: 600})
 
-    win.loadURL('http://localhost:3000');
+    mainWindow.loadURL('http://localhost:3000');
 
     // Open the DevTools.
-    win.webContents.openDevTools();
+    mainWindow.webContents.openDevTools();
 
     // Emitted when the window is closed.
-    win.on('closed', () => {
+    mainWindow.on('closed', () => {
       // Dereference the window object, usually you would store windows
       // in an array if your app supports multi windows, this is the time
       // when you should delete the corresponding element.
-      win = null;
+      mainWindow = null;
     })
   }
 
   // This method will be called when Electron has finished
   // initialization and is ready to create browser windows.
   // Some APIs can only be used after this event occurs.
-  app.on('ready', createWindow);
+  app.on('ready', createMainWindow)
 
   // Quit when all windows are closed.
   app.on('window-all-closed', () => {
     // On macOS it is common for applications and their menu bar
     // to stay active until the user quits explicitly with Cmd + Q
     if (process.platform !== 'darwin') {
-      app.quit();
+      app.quit()
     }
   })
 
@@ -54,6 +43,12 @@ const {app, BrowserWindow} = require('electron')
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
     if (win === null) {
-      createWindow();
+      createMainWindow()
     }
   })
+
+  ipcMain.on('connection:submit', (event, arg) => {
+    console.log("JUST RECIEVED MESSAGE!!!");
+    // console.log(arg);
+    // event.sender.send('asynchronous-reply', 'pong')
+  });

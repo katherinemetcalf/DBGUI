@@ -9,15 +9,3 @@
 .heading .solvusLogo {
   margin: 5px;
 }
-
-.form {
-width: 20rem;
-margin: auto;
-}
-
-.form input {
-  box-sizing: border-box;
-  display: block;
-  width: 100%;
-  margin-bottom: 8px;
-}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './img/SolvusGlobalLogo.png';
 import './App.css';
+import Connect from './Connect';
 
 class App extends Component {
   render() {
@@ -12,19 +13,7 @@ class App extends Component {
           <h1 style={{"color": "#B3B5B8"}}>GLOBAL</h1>
         </div>
 
-        <div className="login form">
-          <h4>Login</h4>
-            <input type="text" placeholder="username"></input>
-            <input type="password" placeholder="password"></input>
-            <button>Submit</button>
-        </div>
-
-        <div className="register form">
-          <h4>Register</h4>
-            <input type="text" placeholder="username"></input>
-            <input type="password" placeholder="password"></input>
-            <button>Submit</button>
-        </div>
+        <Connect />
 
       </div>
     );
