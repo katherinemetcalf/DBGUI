@@ -1,6 +1,14 @@
+.App {
+  width: 100vw;
+  height: 100vh;
+  /* display: flex; */
+  /* flex-direction: column; */
+
+}
+
 .heading {
-  background-color: #1C1E21;
   height: 80px;
+  background-color: #1C1E21;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8,4 +16,12 @@
 
 .heading .solvusLogo {
   margin: 5px;
+}
+
+.display {
+  position: absolute;
+  top: 80px;
+  width: 100%;
+  bottom: 0;
+
 }

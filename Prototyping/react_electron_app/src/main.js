@@ -1,7 +1,7 @@
 const {app, BrowserWindow, ipcMain} = require('electron');
 const path = require('path');
 const url = require('url');
-
+const db = require('./db.js');
 
   // Keep a global reference of the window object, if you don't, the window will
   // be closed automatically when the JavaScript object is garbage collected.
@@ -14,7 +14,7 @@ const url = require('url');
     mainWindow.loadURL('http://localhost:3000');
 
     // Open the DevTools.
-    mainWindow.webContents.openDevTools();
+    // mainWindow.webContents.openDevTools();
 
     // Emitted when the window is closed.
     mainWindow.on('closed', () => {
@@ -48,7 +48,41 @@ const url = require('url');
   })
 
   ipcMain.on('connection:submit', (event, arg) => {
-    console.log("JUST RECIEVED MESSAGE!!!");
-    // console.log(arg);
-    // event.sender.send('asynchronous-reply', 'pong')
+    db.connect(arg, (err) => {
+      if (err) {
+        console.error("connection-error", err);
+        // reply with false
+        event.sender.send('connection:reply', false);
+      } else {
+        // reply with true
+        event.sender.send('connection:reply', true);
+      }
+    });
   });
+
+ipcMain.on('user:create', (event, arg) => {
+  db.createUser(arg);
+});
+
+ipcMain.on('user:drop', (event, arg) => {
+  db.dropUser(arg);
+});
+
+ipcMain.on('user:all', (event, arg) => {
+  db.getAllUsers((err, res) => {
+    if (err) {
+      console.log(err.stack);
+    } else {
+      console.log(res.rows);
+      // event.sender.send('users:all-reply', res.rows);
+    }
+  });
+});
+
+ipcMain.on('database:create', (event, arg) => {
+  db.createDatabase(arg);
+});
+
+ipcMain.on('database:drop', (event, arg) => {
+  db.dropDatabase(arg);
+});
