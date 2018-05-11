@@ -1,27 +1,8 @@
 .Dashboard {
   height: 100%;
   width: 100%;
-}
-
-.navigation {
-  width: 150px;
-  background-color: lightgray;
-  display: inline-block;
-  height: 100%;
-}
-
-.navigation .sideNavLink {
-  display: block;
-  color: blue;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 10px;
-}
-
-.navigation .sideNavLink:active {
-  background-color: gray;
+  display: flex;
 }
 
 .mainWindow {
-  display: inline-block;
 }

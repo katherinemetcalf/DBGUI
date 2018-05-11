@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Dashboard.css';
 import { BrowserRouter as Router, Route, Link} from "react-router-dom";
+import Navigation from './Navigation';
 import Home from './Home';
 import Users from './Users';
 import Databases from './Databases';
@@ -12,11 +13,9 @@ class Dashboard extends Component {
     return (
         <Router>
           <div className="Dashboard">
-            <div className="navigation">
-              <Link className="sideNavLink" to="/">Home</Link>
-              <Link className="sideNavLink" to="/users">Users</Link>
-              <Link className="sideNavLink" to="/databases">Databases</Link>
-            </div>
+
+            <Navigation />
+
             <div className="mainWindow">
               <Route exact path="/" component={Home} />
               <Route path="/users" component={Users} />

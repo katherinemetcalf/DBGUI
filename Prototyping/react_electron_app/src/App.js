@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 import logo from './img/SolvusGlobalLogo.png';
 import './App.css';
-import Connect from './Connect';
+import Login from './Login';
 import Dashboard from './Dashboard/Dashboard';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      connected: false
+      logedIn: false
     };
   }
-  establishedConnection() {
-    this.setState({connected: true});
+  logedIn() {
+    this.setState({logedIn: true});
   }
   render() {
-    const display = this.state.connected?
+    const display = this.state.logedIn?
       (<Dashboard />) :
-      (<Connect connected={this.establishedConnection.bind(this)}/>);
+      (<Login logedIn={this.logedIn.bind(this)}/>);
     return (
       <div className="App">
         <div className="heading">
@@ -26,7 +26,8 @@ class App extends Component {
           <h1 style={{"color": "#B3B5B8"}}>GLOBAL</h1>
         </div>
         <div className="display">
-          {display}
+          {/* display */}
+          <Dashboard />
         </div>
       </div>
     );

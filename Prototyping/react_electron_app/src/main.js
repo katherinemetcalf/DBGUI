@@ -2,6 +2,7 @@ const {app, BrowserWindow, ipcMain} = require('electron');
 const path = require('path');
 const url = require('url');
 const db = require('./db.js');
+const auth = require('./Auth.js');
 
   // Keep a global reference of the window object, if you don't, the window will
   // be closed automatically when the JavaScript object is garbage collected.
@@ -43,21 +44,39 @@ const db = require('./db.js');
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
     if (win === null) {
-      createMainWindow()
+      createMainWindow();
     }
   })
 
-  ipcMain.on('connection:submit', (event, arg) => {
-    db.connect(arg, (err) => {
-      if (err) {
-        console.error("connection-error", err);
-        // reply with false
-        event.sender.send('connection:reply', false);
-      } else {
-        // reply with true
-        event.sender.send('connection:reply', true);
-      }
-    });
+  ipcMain.on('login:submit', (event, arg) => {
+    const loginStatus = auth.login(arg);
+    if (loginStatus.status == 1) {
+      // successful login
+      event.sender.send('login:reply', true);
+      // connect to the database
+      db.connect(arg, (err) => {
+        if (err) {
+          console.error("connection-error", err);
+        } else {
+          // connected!
+          console.log("**connected to database**");
+        }
+      });
+    } else {
+      // failed login
+      event.sender.send('login:reply', false);
+
+    }
+    // db.connect(arg, (err) => {
+    //   if (err) {
+    //     console.error("connection-error", err);
+    //     // reply with false
+    //     event.sender.send('connection:reply', false);
+    //   } else {
+    //     // reply with true
+    //     event.sender.send('connection:reply', true);
+    //   }
+    // });
   });
 
 ipcMain.on('user:create', (event, arg) => {
