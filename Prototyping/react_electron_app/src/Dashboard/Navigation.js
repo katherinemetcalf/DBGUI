@@ -21,6 +21,11 @@ const Navigation = () => {
             <h4 className="label">Users</h4>
           </div>
         </Link>
+        <Link to="/query">
+          <div className="users card">
+            <h4 className="label">Query</h4>
+          </div>
+        </Link>
       </div>
     </div>
   )

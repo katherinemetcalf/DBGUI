@@ -1,0 +1,27 @@
+.Query textarea {
+  display: block;
+  font-size: 15px;
+  font-family: arial;
+  border-radius: 2px;
+  outline: none;
+}
+
+.Query button {
+  margin-top: 1rem;
+  border: none;
+  border-radius: 3px;
+  font-size: 20px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  outline: none;
+}
+
+.Query button:hover {
+  cursor: pointer;
+}
+
+.Query button:active {
+  background-color: gray;
+}

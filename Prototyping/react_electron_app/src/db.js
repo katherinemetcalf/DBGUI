@@ -10,7 +10,7 @@ module.exports =  {
     globalClient = new Client({
       user: 'postgres',
       host: 'localhost',
-      database: 'postgres',
+      database: 'sandbox',
       password: 'TYty1414',
       port: 5432,
     });
@@ -74,9 +74,9 @@ module.exports =  {
     console.log("trying to add databse: " + database);
     globalClient.query('CREATE DATABASE ' + database, (err, res) => {
       if (err) {
-        console.log(err.stack)
+        console.log(err.stack);
       } else {
-        console.log(res.rows[0])
+        console.log(res.rows[0]);
       }
     });
   },
@@ -85,11 +85,16 @@ module.exports =  {
     console.log("trying to drop databse: " + database);
     globalClient.query('DROP DATABASE IF EXISTS ' + database, (err, res) => {
       if (err) {
-        console.log(err.stack)
+        console.log(err.stack);
       } else {
-        console.log(res.rows[0])
+        console.log(res.rows[0]);
       }
     });
+  },
+
+  query: function(q, callback) {
+    console.log("trying to query");
+    return globalClient.query(q, callback);
   }
 
 }

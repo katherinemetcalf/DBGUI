@@ -26,8 +26,7 @@ class App extends Component {
           <h1 style={{"color": "#B3B5B8"}}>GLOBAL</h1>
         </div>
         <div className="display">
-          {/* display */}
-          <Dashboard />
+          { display }
         </div>
       </div>
     );

@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Link} from "react-router-dom";
 import Navigation from './Navigation';
 import Home from './Home';
 import Users from './Users';
+import Query from './Query';
 import Databases from './Databases';
 const electron = window.require('electron');
 const ipcRenderer  = electron.ipcRenderer;
@@ -20,6 +21,7 @@ class Dashboard extends Component {
               <Route exact path="/" component={Home} />
               <Route path="/users" component={Users} />
               <Route path="/databases" component={Databases} />
+              <Route path="/query" component={Query} />
             </div>
           </div>
         </Router>

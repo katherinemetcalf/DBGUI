@@ -65,43 +65,43 @@ const auth = require('./Auth.js');
     } else {
       // failed login
       event.sender.send('login:reply', false);
-
-    }
-    // db.connect(arg, (err) => {
-    //   if (err) {
-    //     console.error("connection-error", err);
-    //     // reply with false
-    //     event.sender.send('connection:reply', false);
-    //   } else {
-    //     // reply with true
-    //     event.sender.send('connection:reply', true);
-    //   }
-    // });
-  });
-
-ipcMain.on('user:create', (event, arg) => {
-  db.createUser(arg);
-});
-
-ipcMain.on('user:drop', (event, arg) => {
-  db.dropUser(arg);
-});
-
-ipcMain.on('user:all', (event, arg) => {
-  db.getAllUsers((err, res) => {
-    if (err) {
-      console.log(err.stack);
-    } else {
-      console.log(res.rows);
-      // event.sender.send('users:all-reply', res.rows);
     }
   });
-});
 
-ipcMain.on('database:create', (event, arg) => {
-  db.createDatabase(arg);
-});
+  ipcMain.on('user:create', (event, arg) => {
+    db.createUser(arg);
+  });
 
-ipcMain.on('database:drop', (event, arg) => {
-  db.dropDatabase(arg);
-});
+  ipcMain.on('user:drop', (event, arg) => {
+    db.dropUser(arg);
+  });
+
+  ipcMain.on('user:all', (event, arg) => {
+    db.getAllUsers((err, res) => {
+      if (err) {
+        console.log(err.stack);
+      } else {
+        console.log(res.rows);
+        // event.sender.send('users:all-reply', res.rows);
+      }
+    });
+  });
+
+  ipcMain.on('database:create', (event, arg) => {
+    db.createDatabase(arg);
+  });
+
+  ipcMain.on('database:drop', (event, arg) => {
+    db.dropDatabase(arg);
+  });
+
+  ipcMain.on('query:execute', (event, arg) => {
+    db.query(arg, (err, res) => {
+      if (err) {
+        console.error('query-error', err.stack);
+      } else {
+        console.log(res.rows);
+        event.sender.send('query:reply', res.rows);
+      }
+    });
+  });
