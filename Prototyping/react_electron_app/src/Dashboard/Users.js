@@ -5,14 +5,6 @@ const ipcRenderer  = electron.ipcRenderer;
 
 class Users extends Component {
   constructor(props) {
-    // let allUsers;
-    // // fetch users
-    // ipcRenderer.send('user:all');
-    // ipcRenderer.on('users:all-reply', (event, arg) => {
-    //   if (arg) {
-    //     allUsers = arg;
-    //   }
-    // });
     super(props);
     this.state = {
       addUser: null,

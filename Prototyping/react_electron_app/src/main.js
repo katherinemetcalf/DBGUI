@@ -10,7 +10,16 @@ const auth = require('./Auth.js');
 
   function createMainWindow () {
     // Create the browser window.
-    mainWindow = new BrowserWindow({width: 800, height: 600})
+    mainWindow = new BrowserWindow(
+      {
+        width: 800,
+        height: 600,
+        webPreferences: {
+            nodeIntegration: false
+        }
+        //icon: __dirname +  '/src/img/icon.icns'
+      }
+    );
 
     mainWindow.loadURL('http://localhost:3000');
 
@@ -50,7 +59,7 @@ const auth = require('./Auth.js');
 
   ipcMain.on('login:submit', (event, arg) => {
     const loginStatus = auth.login(arg);
-    if (loginStatus.status == 1) {
+    if (loginStatus.status) {
       // successful login
       event.sender.send('login:reply', true);
       // connect to the database

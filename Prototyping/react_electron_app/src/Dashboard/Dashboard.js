@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import './Dashboard.css';
-import { BrowserRouter as Router, Route, Link} from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navigation from './Navigation';
 import Home from './Home';
 import Users from './Users';
 import Query from './Query';
 import Databases from './Databases';
-const electron = window.require('electron');
-const ipcRenderer  = electron.ipcRenderer;
 
 class Dashboard extends Component {
   render() {

@@ -6,7 +6,7 @@ module.exports =  {
 
   connect: function(state, callback) {
     // Configure
-    // AUTO-FILL PLACEHOLDER
+    // HARDCODE PLACEHOLDER
     globalClient = new Client({
       user: 'postgres',
       host: 'localhost',
